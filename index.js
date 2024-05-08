@@ -5,9 +5,10 @@ import userRoute from "./routes/userRoute.js";
 import messageRoute from "./routes/messageRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./socket/socket.js";
 dotenv.config();
 
-const app = express();
+// const app = express();
 const PORT = process.env.PORT || 3000;
 
 //middlewear
@@ -15,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 const corsOption = {
-  origin: "http://localhost:5173",
+  origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
 
   credentials: true,
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectDB();
   console.log(`server is listening on ${PORT}`);
 });

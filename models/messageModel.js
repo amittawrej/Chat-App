@@ -3,12 +3,12 @@ import { User } from './userModel.js';
 const messageModel=new Schema({
 senderId:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:User,
+    ref:'User',
     required:true
 },
 receiverId:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:User,
+    ref:'User',
     required:true
 },
 message:{
